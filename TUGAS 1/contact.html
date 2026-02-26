@@ -3,51 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak - PathFinder Project</title>
+    <title>Konsultasi - PathFinder Project</title>
+
+    <!-- Meta SEO sederhana -->
+    <meta name="description" content="Layanan konsultasi jurusan dan karier untuk menghindari salah jurusan bersama PathFinder Project.">
+
+    <!-- Styling sederhana -->
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #1e40af;
+            color: #fff;
+            padding: 1rem 2rem;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        form div {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #1e40af;
+        }
+
+        button {
+            background-color: #1e40af;
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1e3a8a;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>PathFinder</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Beranda</a></li>
-                <li><a href="about.html">Tentang Kami</a></li>
-                <li><a href="portfolio.html">Roadmap Jurusan</a></li>
-                <li><a href="contact.html">Konsultasi</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <h1>PathFinder</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="portfolio.html">Roadmap Jurusan</a></li>
+            <li><a href="contact.html">Konsultasi</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <main>
-        <section>
-            <h2>Konsultasi Jurusan</h2>
-            <p>Punya pertanyaan spesifik tentang pilihan jurusan atau potensi salah jurusan? Hubungi tim kami di bawah ini.</p>
-            
-            <form action="#" method="POST">
-                <div>
-                    <label for="name">Nama Lengkap:</label>
-                    <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda">
-                </div>
+<main>
+    <section>
+        <h2>Konsultasi Jurusan & Karier</h2>
+        <p>
+            Bingung menentukan jurusan atau khawatir salah pilih?
+            Sampaikan kondisi pendidikan dan minatmu, tim PathFinder akan membantu memberikan arahan.
+        </p>
 
-                <div>
-                    <label for="email">Email Aktif:</label>
-                    <input type="email" id="email" name="email" required placeholder="nama@email.com">
-                </div>
+        <form action="#" method="POST">
+            <div>
+                <label for="name">Nama Lengkap</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    placeholder="Contoh: Ahmad Fauzi">
+            </div>
 
-                <div>
-                    <label for="message">Pesan/Keluhan:</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Ceritakan kondisi pendidikan Anda saat ini..."></textarea>
-                </div>
+            <div>
+                <label for="email">Email Aktif</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder="nama@email.com">
+            </div>
 
-                <button type="submit">Kirim Konsultasi</button>
-            </form>
-        </section>
-    </main>
+            <div>
+                <label for="message">Pesan / Permasalahan</label>
+                <textarea 
+                    id="message" 
+                    name="message" 
+                    rows="5" 
+                    required 
+                    placeholder="Ceritakan jurusan, minat, dan kendala yang sedang kamu alami..."></textarea>
+            </div>
 
-    <footer>
-        <p>&copy; 2026 PathFinder Project - Fokus SDGs 4 & 8</p>
-    </footer>
+            <button type="submit">Kirim Konsultasi</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 PathFinder Project | Mendukung SDGs 4 (Pendidikan) & 8 (Pekerjaan Layak)</p>
+</footer>
 
 </body>
 </html>
