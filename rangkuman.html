@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Roadmap Jurusan</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!-- dashboard / CRUD section -->
+    <div id="dashboardSection">
+        <h2>Dashboard Roadmap Jurusan &mdash; <span id="userName"></span></h2>
+        <button id="logoutBtn">Logout</button>
+        <hr>
+        <form id="itemForm">
+            <h3>Tambah / Edit Roadmap</h3>
+            <input type="hidden" id="itemId">
+            <div class="form-group">
+                <label for="itemTitle">Jurusan</label>
+                <span class="separator">:</span>
+                <input type="text" id="itemTitle" required placeholder="Contoh: Teknik Informatika">
+            </div>
+            <div class="form-group">
+                <label for="itemDesc">Tahapan / Keterangan</label>
+                <span class="separator">:</span>
+                <input type="text" id="itemDesc" required placeholder="Contoh: Semester 1-2">
+            </div>
+            <input type="submit" value="Simpan">
+        </form>
+        <table id="itemsTable">
+            <thead>
+                <tr><th>No</th><th>Jurusan</th><th>Tahapan</th><th>Aksi</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+// Check apakah user sudah login
+const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+if (!currentUser) {
+    alert('Silakan login dulu!');
+    window.location.href = 'index.html';
+}
+
+// Tampilkan nama user
+document.getElementById('userName').textContent = currentUser.nama;
+
+// Fungsi baca roadmap dari localStorage
+function getItems() {
+    return JSON.parse(localStorage.getItem('roadmapItems') || '[]');
+}
+
+// Fungsi simpan roadmap ke localStorage
+function saveItems(items) {
+    localStorage.setItem('roadmapItems', JSON.stringify(items));
+}
+
+// Tampilkan tabel roadmap
+function renderTable() {
+    const tbody = document.querySelector('#itemsTable tbody');
+    tbody.innerHTML = '';
+    
+    const items = getItems();
+    items.forEach((item, idx) => {
+        const row = `
+            <tr>
+                <td>${idx + 1}</td>
+                <td>${item.title}</td>
+                <td>${item.desc}</td>
+                <td>
+                    <button class="editBtn" data-id="${item.id}">Edit</button>
+                    <button class="delBtn" data-id="${item.id}">Hapus</button>
+                </td>
+            </tr>
+        `;
+        tbody.innerHTML += row;
+    });
+    
+    // Pasang listener untuk Edit button
+    document.querySelectorAll('.editBtn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const items = getItems();
+            const item = items.find(i => i.id === this.dataset.id);
+            document.getElementById('itemId').value = item.id;
+            document.getElementById('itemTitle').value = item.title;
+            document.getElementById('itemDesc').value = item.desc;
+        });
+    });
+    
+    // Pasang listener untuk Hapus button
+    document.querySelectorAll('.delBtn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (!confirm('Yakin hapus?')) return;
+            
+            let items = getItems();
+            items = items.filter(i => i.id !== this.dataset.id);
+            saveItems(items);
+            renderTable();
+        });
+    });
+}
+
+// Handle submit form
+document.getElementById('itemForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const itemId = document.getElementById('itemId').value;
+    const title = document.getElementById('itemTitle').value;
+    const desc = document.getElementById('itemDesc').value;
+    
+    let items = getItems();
+    
+    if (itemId) {
+        // Update
+        items = items.map(item => {
+            if (item.id === itemId) {
+                item.title = title;
+                item.desc = desc;
+            }
+            return item;
+        });
+    } else {
+        // Tambah baru
+        items.push({
+            id: Date.now().toString(),
+            title: title,
+            desc: desc
+        });
+    }
+    
+    saveItems(items);
+    renderTable();
+    this.reset();
+    document.getElementById('itemId').value = '';
+});
+
+// Handle logout
+document.getElementById('logoutBtn').addEventListener('click', function() {
+    sessionStorage.removeItem('currentUser');
+    window.location.href = 'index.html';
+});
+
+// Load & tampilkan tabel saat pertama kali
+renderTable();
+    </script>
+</body>
+</html>
