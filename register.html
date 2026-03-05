@@ -1,0 +1,96 @@
+<form id="registrationForm">
+    <h2>Formulir Pendaftaran</h2>
+
+    <div class="form-group">
+        <label for="regUsername">Username</label>
+        <span class="separator">:</span>
+        <input type="text" id="regUsername" name="username" required>
+    </div>
+
+    <div class="form-group">
+        <label for="regPassword">Password</label>
+        <span class="separator">:</span>
+        <input type="password" id="regPassword" name="password" placeholder="Min. 8 Karakter" required>
+    </div>
+
+    <div class="form-group">
+        <label for="confirmPassword">Konfirmasi</label>
+        <span class="separator">:</span>
+        <input type="password" id="confirmPassword" required>
+    </div>
+
+    <div class="form-group">
+        <label for="nama">Nama Lengkap</label>
+        <span class="separator">:</span>
+        <input type="text" id="nama" name="nama" required>
+    </div>
+
+    <input type="submit" value="Daftar">
+    <p>Sudah punya akun? <a href="index.html">Login</a></p>
+</form>
+
+<script>
+// Validasi Nama Modern
+function validasiNama(nama) {
+    const pola = /^[a-zA-Z' ]+$/;
+    if (nama.length < 3) {
+        alert('Nama terlalu pendek!');
+        return false;
+    }
+    if (!pola.test(nama)) {
+        alert('Nama hanya boleh huruf dan spasi!');
+        return false;
+    }
+    return true;
+}
+
+// Validasi Password
+function validasiPassword(p1, p2) {
+    if (p1.length < 8) {
+        alert('Password minimal 8 karakter!');
+        return false;
+    }
+    if (p1 !== p2) {
+        alert('Konfirmasi password tidak cocok!');
+        return false;
+    }
+    return true;
+}
+
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('regUsername').value;
+    const password = document.getElementById('regPassword').value;
+    const confirm = document.getElementById('confirmPassword').value;
+    const nama = document.getElementById('nama').value;
+    
+    // Jalankan Semua Validasi
+    if (!validasiNama(nama)) return;
+    if (!validasiPassword(password, confirm)) return;
+    
+    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    
+    if (users.find(u => u.username === username)) {
+        alert('Username sudah terdaftar!');
+        return;
+    }
+    
+    // Simpan Data (Sesuai input lainnya)
+    const newUser = {
+        username, 
+        password, 
+        nama,
+        alamat: document.getElementById('alamat').value,
+        tptLahir: document.getElementById('tptLahir').value,
+        tglLahir: document.getElementById('tglLahir').value,
+        jk: document.querySelector('input[name="jk"]:checked').value
+    };
+    
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    alert('Registrasi Berhasil!');
+    window.location.href = 'index.html';
+});
+</script>
