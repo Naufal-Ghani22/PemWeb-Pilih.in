@@ -93,7 +93,7 @@ body {
     font-weight: 600;
 }
 
-.wrapper register-link {
+.wrapper .register-link {
     font-size: 15px;
     text-align: center;
     margin: 20px 0 15px;
