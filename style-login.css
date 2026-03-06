@@ -1,3 +1,12 @@
+/* VALUE WARNA */
+:root{
+    --primary: #982ee1;
+    --second: #ecc0f8;
+    --yellow: #ffcb46;
+    --bg: #f3f3f3;
+    --white: #fff;
+}
+
 body {
     font-family: 'Courier New', Courier, monospace;
     background-color: #f4f4f4;
@@ -54,7 +63,7 @@ input[type="radio"] {
 
 input[type="submit"] {
     width: 100%;
-    background: #28a745;
+    background: var(--primary);
     color: white;
     border: none;
     padding: 10px;
@@ -64,7 +73,8 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background: #218838;
+    background: var(--second);
+    color: var(--primary);
 }
 
 /* dashboard and table styles */
