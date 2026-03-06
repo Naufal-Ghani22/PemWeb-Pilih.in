@@ -7,74 +7,102 @@
     --white: #fff;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", "sans-serif";
+}
+
+
 body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    background: none;
 }
 
-form {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 450px;
-    display: grid;
-    gap: 10px;
+.wrapper {
+    width: 420px;
+    background: green;
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
 }
 
-h2 {
+.wrapper h1{
+    font-size: 36px;
     text-align: center;
 }
 
-.form-group {
-    display: grid;
-    grid-template-columns: 150px 10px auto;
-    align-items: center;
-}
-
-label {
-    font-weight: bold;
-}
-
-.separator {
-    text-align: center;
-}
-
-input[type="text"]{
-    margin-right: 3px;
-}
-input[type="date"]{
-    margin-right: 3px;
-}
-
-.radio-group {
-    display: flex;
-    gap: 10px;
-}
-
-input[type="radio"] {
-    margin-right: 5px;
-}
-
-input[type="submit"] {
+.wrapper .input-box {
+    position: relative;
     width: 100%;
-    background: var(--primary);
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: white;
+}
+
+.input-box i {
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    transform: translate(-50%);
+    font-size: 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+    color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: white;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    background: #28a745;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 4px;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
     cursor: pointer;
     font-size: 16px;
 }
 
 input[type="submit"]:hover {
-    background: var(--second);
-    color: var(--primary);
+    background: #218838;
 }
 
 /* dashboard and table styles */
@@ -90,35 +118,15 @@ input[type="submit"]:hover {
 
 #dashboardSection h2 {
     text-align: center;
+    margin: 20px 0 15px;
 }
 
-#itemsTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-#itemsTable th, #itemsTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-#itemsTable th {
-    background: #f2f2f2;
-    text-align: left;
+.register-link p a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
 }
 
-button {
-    padding: 5px 10px;
-    margin: 0 2px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
+.register-link p a:hover {
+    text-decoration: underline;
 }
-button.editBtn { background: #ffc107; color: #000; }
-button.delBtn { background: #dc3545; color: #fff; }
-button#logoutBtn { background: #007bff; color: #fff; float: right; }
-
-#userName { font-weight: normal; color: #555; }
-
-/* small fix for form in dashboard */
-#itemForm .form-group { margin-bottom: 10px; }
